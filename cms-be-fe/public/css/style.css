@@ -1,0 +1,73 @@
+/* Warna utama hijau */
+:root {
+    --main-green: #4CAF50;
+    --main-green-dark: #388E3C;
+    --main-green-light: #C8E6C9;
+}
+
+body {
+    background: #f8f9fa;
+}
+
+.navbar, .navbar-light.bg-white {
+    background: var(--main-green) !important;
+    border-bottom: 2px solid var(--main-green-light);
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-link.active, .nav-link:focus, .nav-link:hover {
+    color: var(--main-green-light) !important;
+}
+
+.dropdown-menu {
+    min-width: 200px;
+}
+
+.btn-primary, .btn-outline-primary {
+    background-color: var(--main-green) !important;
+    border-color: var(--main-green) !important;
+    color: #fff !important;
+}
+
+.btn-outline-primary {
+    background: #fff !important;
+    color: var(--main-green) !important;
+}
+
+.btn-primary:hover, .btn-outline-primary:hover {
+    background-color: var(--main-green-dark) !important;
+    border-color: var(--main-green-dark) !important;
+    color: #fff !important;
+}
+
+.text-primary {
+    color: var(--main-green) !important;
+}
+
+.table-primary {
+    background-color: var(--main-green-light) !important;
+    color: var(--main-green-dark) !important;
+}
+
+.footer {
+    background: var(--main-green);
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.card-title.text-primary {
+    color: var(--main-green) !important;
+}
+
+a {
+    color: var(--main-green);
+}
+a:hover {
+    color: var(--main-green-dark);
+}
