@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\WebSetting;
+use App\Models\Menu;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $webSetting = WebSetting::first();
         View::share('webSetting', $webSetting);
+        $navMenus = Menu::with('subMenus')->get();
+        View::share('navMenus', $navMenus);
     }
 }

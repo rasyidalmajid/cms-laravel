@@ -103,3 +103,123 @@ a {
 a:hover {
     color: var(--main-green-dark);
 }
+
+/* Responsive grid for album and gallery */
+.row.g-3 > [class^='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+.card-img-top, .img-fluid.rounded.shadow-sm {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+@media (max-width: 991.98px) {
+  .row.g-3 > .col-md-3, .row.g-3 > .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .navbar .dropdown-menu {
+    position: static;
+    float: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .row.g-3 > .col-md-3, .row.g-3 > .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .card-img-top, .img-fluid.rounded.shadow-sm {
+    height: 140px;
+  }
+  .navbar-brand span {
+    font-size: 1rem;
+  }
+  .footer {
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
+  main.container.py-4 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Section spacing */
+.mb-4, .mb-5 {
+  margin-bottom: 2rem !important;
+}
+
+/* Card body padding for mobile */
+@media (max-width: 575.98px) {
+  .card-body.p-2 {
+    padding: 0.75rem !important;
+  }
+}
+
+/* Navbar brand logo and text responsive */
+.navbar-brand img {
+  height: 40px;
+  width: auto;
+  max-width: 48px;
+  object-fit: contain;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-brand {
+    font-size: 1rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  .navbar-brand img {
+    height: 32px;
+    max-width: 36px;
+  }
+  .navbar-nav {
+    background: var(--main-green);
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .navbar-nav .nav-link, .navbar-nav .dropdown-item {
+    color: #fff !important;
+  }
+  .navbar-nav .dropdown-menu {
+    background: #fff;
+    color: var(--main-green-dark);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: 1px solid var(--main-green-light);
+  }
+  .navbar-nav .dropdown-item {
+    color: var(--main-green) !important;
+  }
+  .navbar-nav .dropdown-item:hover, .navbar-nav .dropdown-item:focus {
+    background: var(--main-green-light);
+    color: var(--main-green-dark) !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand span {
+    font-size: 0.95rem;
+  }
+  .navbar-nav {
+    font-size: 0.98rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Navbar height and padding */
+.navbar {
+  min-height: 56px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
