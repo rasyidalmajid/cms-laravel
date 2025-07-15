@@ -12,4 +12,5 @@ class Page extends Model
     protected $fillable = [
         'meta_text', 'meta_key', 'meta_desc', 'title', 'key_page', 'name', 'picture', 'content', 'berkas_id'
     ];
+    public $timestamps = false;
 }
