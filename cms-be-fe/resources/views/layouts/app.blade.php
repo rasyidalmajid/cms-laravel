@@ -20,24 +20,30 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link @if(request()->is('/')) active @endif" href="/">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle @if(request()->is('profil*')) active @endif" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profil Sekolah</a>
-          <ul class="dropdown-menu" aria-labelledby="profilDropdown">
-            <li><a class="dropdown-item" href="/profil/visi-misi">Visi Misi</a></li>
-            <li><a class="dropdown-item" href="/profil/sejarah">Sejarah</a></li>
-            <li><a class="dropdown-item" href="/profil/program-jurusan">Program Jurusan</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle @if(request()->is('informasi*')) active @endif" href="#" id="informasiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Informasi</a>
-          <ul class="dropdown-menu" aria-labelledby="informasiDropdown">
-            <li><a class="dropdown-item" href="/informasi/lap-keuangan">Laporan Keuangan</a></li>
-            <li><a class="dropdown-item" href="/informasi/lap-kegiatan">Laporan Kegiatan</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link @if(request()->is('galeri')) active @endif" href="/galeri">Galeri</a></li>
-        <li class="nav-item"><a class="nav-link @if(request()->is('kontak')) active @endif" href="/kontak">Kontak</a></li>
+        @foreach($navMenus as $menu)
+          @if($menu->subMenus->count())
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="menuDropdown{{ $menu->id }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ $menu->nama }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="menuDropdown{{ $menu->id }}">
+                @foreach($menu->subMenus as $submenu)
+                  @if($submenu->page)
+                    <li><a class="dropdown-item" href="{{ route('page.show', $submenu->page->key_page) }}">{{ $submenu->nama }}</a></li>
+                  @else
+                    <li><span class="dropdown-item disabled">{{ $submenu->nama }}</span></li>
+                  @endif
+                @endforeach
+              </ul>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{ $menu->route ? route($menu->route) : url('/'.$menu->nama) }}">
+                  {{ $menu->nama }}
+              </a>
+            </li>
+          @endif
+        @endforeach
       </ul>
     </div>
   </div>
