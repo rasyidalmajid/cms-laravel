@@ -84,6 +84,7 @@ class PageController extends Controller
     public function destroy($id)
     {
         $page = Page::findOrFail($id);
+        SubMenu::where('page_id', $id)->delete();
         $page->delete();
         return redirect()->route('admin.pages.index')->with('success', 'Page berhasil dihapus!');
     }

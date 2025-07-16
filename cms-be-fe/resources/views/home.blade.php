@@ -8,7 +8,7 @@
   <div class="carousel-inner">
     @foreach($sliders as $i => $slider)
       <div class="carousel-item @if($i==0) active @endif">
-        <img src="{{ asset('assets/slider/' . $slider->picture) }}" class="d-block w-100 rounded" alt="Slider" style="max-height:350px;object-fit:cover;">
+        <img src="{{ asset('assets/slider/' . $slider->picture) }}" class="d-block w-100 rounded banner-img" alt="Slider">
         @if($slider->title || $slider->desc)
         <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
           <h5>{{ $slider->title }}</h5>
@@ -26,6 +26,14 @@
   </button>
 </div>
 @endif
+<style>
+  .banner-img {
+    height: 70vh;
+    min-height: 350px;
+    max-height: 90vh;
+    object-fit: cover;
+  }
+</style>
 
 {{-- KEPALA SEKOLAH, SAMBUTAN, AGENDA --}}
 <div class="row align-items-stretch mb-5 g-3">
@@ -74,5 +82,13 @@
     @endforeach
   </div>
   <a href="/galeri" class="btn btn-outline-primary btn-sm mt-3">Lihat Galeri Lengkap</a>
+</div>
+
+{{-- MAP/ PETA SEKOLAH --}}
+<div class="mb-5">
+  <h4 class="mb-3 text-primary">Lokasi Sekolah</h4>
+  <div style="width: 100%; height: 400px;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.123456789!2d110.123456789!3d-7.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSMAN%201%20Tengaran!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" width="100%" height="100%" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
 </div>
 @endsection
