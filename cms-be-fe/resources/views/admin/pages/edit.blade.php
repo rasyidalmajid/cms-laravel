@@ -6,16 +6,12 @@
 <div class="mb-3">
     <h2>Edit Page</h2>
 </div>
-<form method="POST" action="{{ route('admin.pages.update', $page->id) }}">
+<form method="POST" action="{{ route('admin.pages.update', $page->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
         <label>Judul</label>
         <input type="text" name="title" class="form-control" required value="{{ old('title', $page->title) }}">
-    </div>
-    <div class="mb-3">
-        <label>Slug (key_page)</label>
-        <input type="text" name="key_page" class="form-control" required value="{{ old('key_page', $page->key_page) }}">
     </div>
     <div class="mb-3">
         <label>Pilih Menu</label>
@@ -29,6 +25,27 @@
     <div class="mb-3">
         <label>Konten</label>
         <textarea name="content" id="content" class="form-control" rows="8" required>{{ old('content', $page->content) }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>Upload Berkas (opsional)</label>
+        <input type="file" name="berkas_upload[]" class="form-control" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar">
+    </div>
+    <div class="mb-3">
+        <label>Pilih Berkas yang Sudah Ada (opsional)</label>
+        <select name="berkas_pilih[]" class="form-control">
+            <option value="">-- Pilih Berkas --</option>
+            @foreach(\App\Models\Berkas::all() as $berkas)
+                <option value="{{ $berkas->id }}" {{ $page->berkas->contains($berkas->id) ? 'selected' : '' }}>{{ $berkas->nama_berkas }} ({{ $berkas->berkas }})</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Berkas yang Sudah Terhubung:</label>
+        <ul>
+            @foreach($page->berkas as $berkas)
+                <li>{{ $berkas->nama_berkas }} (<a href="{{ asset('assets/berkas/'.$berkas->berkas) }}" target="_blank">{{ $berkas->berkas }}</a>)</li>
+            @endforeach
+        </ul>
     </div>
     @if($errors->any())
         <div class="alert alert-danger">

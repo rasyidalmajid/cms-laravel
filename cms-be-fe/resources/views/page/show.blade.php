@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('title', ($page->title ?? 'Halaman') . ' | ' . ($webSetting->nama_sekolah ?? 'Sekolah') )
+
 @section('content')
 <div class="row">
   <div class="col-lg-3 mb-4">
@@ -25,6 +27,17 @@
       <div class="card-body">
         <h2 class="mb-3 text-primary">{{ $page->title }}</h2>
         {!! $page->content !!}
+        @if($page->berkas_id)
+        <div class="mt-4">
+          <h5>Dokumen Terkait:</h5>
+          <div class="d-flex align-items-center gap-2">
+            <span>{{ optional(\App\Models\Berkas::find($page->berkas_id))->nama_berkas }}</span>
+            @if(\App\Models\Berkas::find($page->berkas_id))
+              <a href="{{ asset('assets/berkas/' . \App\Models\Berkas::find($page->berkas_id)->berkas) }}" class="btn btn-sm btn-primary" download>Download</a>
+            @endif
+          </div>
+        </div>
+        @endif
       </div>
     </div>
   </div>

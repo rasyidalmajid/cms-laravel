@@ -6,7 +6,7 @@
 <div class="mb-3">
     <h2>Edit Data Kontak & Web Setting</h2>
 </div>
-<form method="POST" action="{{ route('admin.web_setting.update') }}">
+<form method="POST" action="{{ route('admin.web_setting.update') }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -41,9 +41,18 @@
         <label>Google Plus</label>
         <input type="text" name="google_plus" class="form-control" value="{{ old('google_plus', $setting->google_plus) }}">
     </div>
+
     <div class="mb-3">
-        <label>Running Text</label>
-        <textarea name="run_text" class="form-control">{{ old('run_text', $setting->run_text) }}</textarea>
+        <label>Nama Sekolah</label>
+        <input type="text" name="nama_sekolah" class="form-control" required value="{{ old('nama_sekolah', $setting->nama_sekolah) }}">
+    </div>
+    <div class="mb-3">
+        <label>Logo Sekolah</label><br>
+        @if($setting->logo)
+            <img src="{{ asset('assets/images/' . $setting->logo) }}" alt="Logo" style="max-height:60px; margin-bottom:8px;">
+        @endif
+        <input type="file" name="logo" class="form-control">
+        <small class="text-muted">Biarkan kosong jika tidak ingin mengubah logo.</small>
     </div>
     @if($errors->any())
         <div class="alert alert-danger">

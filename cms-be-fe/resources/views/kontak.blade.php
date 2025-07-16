@@ -53,8 +53,7 @@
             <div class="card-body p-2">
                 <h5 class="fw-bold mb-3">Lokasi Sekolah</h5>
                 <div style="width: 100%; height: 260px;">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.123456789!2d110.123456789!3d-7.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSMAN%201%20Tengaran!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" width="100%" height="100%" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.59854453919!2d110.39711117400044!3d-7.17206319283276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70865dafb8111f%3A0x1f0f4bbae809aceb!2sSMK%20Kesehatan%20Darussalam%20Bergas!5e1!3m2!1sid!2sid!4v1752639226105!5m2!1sid!2sid" width="525" height="260" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                </div>
             </div>
         </div>
     </div>

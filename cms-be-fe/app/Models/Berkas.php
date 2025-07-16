@@ -12,4 +12,10 @@ class Berkas extends Model
     protected $fillable = [
         'nama_berkas', 'berkas'
     ];
+    public $timestamps = false;
+
+    public function pages()
+    {
+        return $this->belongsToMany(Page::class, 'berkas_halaman', 'berkas_id', 'page_id');
+    }
 }
