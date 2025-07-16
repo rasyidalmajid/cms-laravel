@@ -6,15 +6,11 @@
 <div class="mb-3">
     <h2>Tambah Page Baru</h2>
 </div>
-<form method="POST" action="{{ route('admin.pages.store') }}">
+<form method="POST" action="{{ route('admin.pages.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label>Judul</label>
         <input type="text" name="title" class="form-control" required value="{{ old('title') }}">
-    </div>
-    <div class="mb-3">
-        <label>Slug (key_page)</label>
-        <input type="text" name="key_page" class="form-control" required value="{{ old('key_page') }}">
     </div>
     <div class="mb-3">
         <label>Pilih Menu</label>
@@ -28,6 +24,19 @@
     <div class="mb-3">
         <label>Konten</label>
         <textarea name="content" id="content" class="form-control" rows="8" required>{{ old('content') }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>Upload Berkas (opsional)</label>
+        <input type="file" name="berkas_upload[]" class="form-control" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip,.rar">
+    </div>
+    <div class="mb-3">
+        <label>Pilih Berkas yang Sudah Ada (opsional)</label>
+        <select name="berkas_pilih[]" class="form-control">
+            <option value="">-- Pilih Berkas --</option>
+            @foreach(\App\Models\Berkas::all() as $berkas)
+                <option value="{{ $berkas->id }}">{{ $berkas->nama_berkas }} ({{ $berkas->berkas }})</option>
+            @endforeach
+        </select>
     </div>
     @if($errors->any())
         <div class="alert alert-danger">

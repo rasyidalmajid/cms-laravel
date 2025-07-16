@@ -16,6 +16,7 @@
             <th>#</th>
             <th>Judul</th>
             <th>Slug</th>
+            <th>Menu Induk</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -25,6 +26,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $page->title }}</td>
                 <td>{{ $page->key_page }}</td>
+                <td>{{ $page->subMenu && $page->subMenu->menu ? $page->subMenu->menu->nama : '-' }}</td>
                 <td>
                     <a href="{{ route('admin.pages.edit', $page->id) }}" class="btn btn-sm btn-primary">Edit</a>
                     <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Yakin hapus page?')">
@@ -35,7 +37,7 @@
                 </td>
             </tr>
         @empty
-            <tr><td colspan="4" class="text-center">Belum ada page.</td></tr>
+            <tr><td colspan="5" class="text-center">Belum ada page.</td></tr>
         @endforelse
     </tbody>
 </table>
