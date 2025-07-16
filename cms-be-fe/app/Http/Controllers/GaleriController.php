@@ -11,7 +11,6 @@ class GaleriController extends Controller
     public function index()
     {
         $albums = Album::with('fotoGallery')->get();
-        $galeri = FotoGallery::orderBy('id', 'desc')->get();
-        return view('galeri', compact('albums', 'galeri'));
+        return view('galeri', compact('albums'));
     }
 }

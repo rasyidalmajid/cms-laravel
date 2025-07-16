@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $webSetting = WebSetting::first();
         View::share('webSetting', $webSetting);
-        $navMenus = Menu::with('subMenus')->get();
+        $navMenus = Menu::with('subMenus')->orderBy('urutan')->get();
         View::share('navMenus', $navMenus);
     }
 }

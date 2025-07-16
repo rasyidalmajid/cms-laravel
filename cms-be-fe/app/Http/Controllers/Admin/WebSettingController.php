@@ -31,9 +31,17 @@ class WebSettingController extends Controller
             'email' => 'required|email',
             'alamat' => 'required',
             'no_telp' => 'required',
-            'run_text' => 'nullable',
+            'nama_sekolah' => 'required',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
-        $setting->update($request->only(['judul_website', 'title', 'facebook', 'twitter', 'google_plus', 'email', 'alamat', 'no_telp', 'run_text']));
+        $data = $request->only(['judul_website', 'title', 'facebook', 'twitter', 'google_plus', 'email', 'alamat', 'no_telp', 'nama_sekolah']);
+        if ($request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $filename = 'logo_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('assets/images'), $filename);
+            $data['logo'] = $filename;
+        }
+        $setting->update($data);
         return redirect()->route('admin.web_setting.index')->with('success', 'Data kontak berhasil diupdate!');
     }
 }

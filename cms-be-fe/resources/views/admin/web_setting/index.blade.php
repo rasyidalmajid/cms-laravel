@@ -11,6 +11,8 @@
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 <table class="table table-bordered w-50">
+    <tr><th>Nama Sekolah</th><td>{{ $setting->nama_sekolah }}</td></tr>
+    <tr><th>Logo</th><td>@if($setting->logo)<img src="{{ asset('assets/images/' . $setting->logo) }}" alt="Logo" style="max-height:60px;">@endif</td></tr>
     <tr><th>Judul Website</th><td>{{ $setting->judul_website }}</td></tr>
     <tr><th>Title</th><td>{{ $setting->title }}</td></tr>
     <tr><th>Alamat</th><td>{{ $setting->alamat }}</td></tr>
@@ -19,6 +21,5 @@
     <tr><th>Facebook</th><td>{{ $setting->facebook }}</td></tr>
     <tr><th>Twitter</th><td>{{ $setting->twitter }}</td></tr>
     <tr><th>Google Plus</th><td>{{ $setting->google_plus }}</td></tr>
-    <tr><th>Running Text</th><td>{{ $setting->run_text }}</td></tr>
 </table>
 @endsection

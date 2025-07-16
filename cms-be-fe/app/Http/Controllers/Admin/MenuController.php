@@ -9,7 +9,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menus = Menu::with('subMenus')->get();
+        $menus = Menu::with('subMenus')->orderBy('urutan')->get();
         return view('admin.menu.index', compact('menus'));
     }
 
@@ -19,13 +19,29 @@ class MenuController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required',
-        ]);
-        Menu::create($request->only('nama'));
-        return redirect()->route('admin.menu.index')->with('success', 'Menu berhasil ditambahkan!');
-    }
+{
+    $request->validate([
+        'nama' => 'required',
+        'urutan' => 'nullable|integer',
+    ]);
+
+    // -1 = paling atas
+    $target = $request->input('urutan', -1);
+    $insertAt = $target + 1;
+
+    // Geser menu yang punya urutan >= insertAt
+    Menu::where('urutan', '>=', $insertAt)->increment('urutan');
+
+    $menu = new Menu();
+    $menu->nama = $request->input('nama');
+    $menu->urutan = $insertAt;
+    $menu->save();
+
+    $this->reindexMenuOrder();
+    return redirect()->route('admin.menu.index')->with('success', 'Menu berhasil ditambahkan!');
+}
+
+
 
     public function edit($id)
     {
@@ -34,19 +50,71 @@ class MenuController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required',
-        ]);
-        $menu = Menu::findOrFail($id);
-        $menu->update($request->only('nama'));
-        return redirect()->route('admin.menu.index')->with('success', 'Menu berhasil diupdate!');
+{
+    $request->validate([
+        'nama' => 'required',
+        'urutan' => 'nullable|integer',
+    ]);
+
+    $menu = Menu::findOrFail($id);
+    $oldUrutan = $menu->urutan;
+    $target = $request->input('urutan', -1);
+    $newUrutan = $target + 1;
+
+    if ($newUrutan != $oldUrutan) {
+        if ($newUrutan < $oldUrutan) {
+            // Geser ke bawah dari target sampai sebelum old
+            Menu::where('urutan', '>=', $newUrutan)
+                ->where('urutan', '<', $oldUrutan)
+                ->increment('urutan');
+        } elseif ($newUrutan > $oldUrutan) {
+            // Geser ke atas dari setelah old sampai target
+            Menu::where('urutan', '<=', $newUrutan)
+                ->where('urutan', '>', $oldUrutan)
+                ->decrement('urutan');
+        }
+
+        $menu->urutan = $newUrutan;
     }
+
+    $menu->nama = $request->input('nama');
+    $menu->save();
+
+    $this->reindexMenuOrder();
+    return redirect()->route('admin.menu.index')->with('success', 'Menu berhasil diupdate!');
+}
+
+
 
     public function destroy($id)
     {
         $menu = Menu::findOrFail($id);
         $menu->delete();
+        // Reindex setelah delete agar urutan unik dan berurutan
+        $this->reindexMenuOrder();
         return redirect()->route('admin.menu.index')->with('success', 'Menu berhasil dihapus!');
     }
+
+    public function reorder(Request $request)
+    {
+        $order = $request->input('order', []);
+        foreach ($order as $i => $id) {
+            Menu::where('id', $id)->update(['urutan' => $i]);
+        }
+        $this->reindexMenuOrder();
+        return response()->json(['success' => true]);
+    }
+
+    private function reindexMenuOrder()
+{
+    $all = Menu::orderBy('urutan')->orderBy('id')->get();
+    foreach ($all as $i => $menu) {
+        if ($menu->urutan != $i) {
+            $menu->urutan = $i;
+            $menu->save();
+        }
+    }
+}
+
+
 }
