@@ -217,9 +217,95 @@ a:hover {
   }
 }
 
-/* Navbar height and padding */
+/* === Kompakkan tampilan global, kecuali banner, map, dan card === */
+html, body {
+    font-size: 15px;
+}
+
+.navbar, .navbar-nav, .dropdown-menu, .btn, .form-control, .footer {
+    font-size: 0.95em;
+}
 .navbar {
-  min-height: 56px;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+    min-height: 44px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+.navbar-nav .nav-link, .dropdown-item {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    font-size: 0.97em;
+}
+.btn, .btn-sm, .form-control, .form-control-sm {
+    font-size: 0.95em;
+    padding: 0.3rem 0.7rem;
+}
+.footer {
+    font-size: 0.95em;
+    padding: 12px 0;
+}
+
+.school-logo {
+    width: 60px;
+    height: 60px;
+}
+
+.mb-4, .mb-5 {
+    margin-bottom: 1.2rem !important;
+}
+main.container.py-4 {
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+}
+
+/* Banner, map, dan card tetap proporsional (tidak diubah) */
+/* .banner-img, .card, .map-section { ... } */
+
+
+.school-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1s;
+  }
+  .school-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    animation: fadeIn 1.2s;
+  }
+  .school-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    letter-spacing: 1px;
+    animation: slideIn 1.2s;
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+/* Navbar link putih, kecuali dropdown-item tetap hijau */
+.navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.dropdown-menu .dropdown-item {
+    color: var(--main-green) !important;
+    background: #fff;
+}
+
+.dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus {
+    background: var(--main-green-light);
+    color: var(--main-green-dark) !important;
 }
