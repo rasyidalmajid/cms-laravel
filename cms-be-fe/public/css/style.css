@@ -1,0 +1,311 @@
+/* Warna utama hijau */
+:root {
+    --main-green: #4CAF50;
+    --main-green-dark: #388E3C;
+    --main-green-light: #C8E6C9;
+}
+
+body {
+    background: #f8f9fa;
+}
+
+.navbar, .navbar-light.bg-white {
+    background: var(--main-green) !important;
+    border-bottom: 2px solid var(--main-green-light);
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-link.active, .nav-link:focus, .nav-link:hover {
+    color: var(--main-green-light) !important;
+}
+
+/* Navbar Dropdown Hover */
+@media (min-width: 992px) {
+  .navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    transition: all 0.2s;
+  }
+}
+
+.dropdown-menu {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--main-green-light);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  background: #fff;
+  transition: 0.2s;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.25rem;
+  color: var(--main-green);
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background: var(--main-green-light);
+  color: var(--main-green-dark);
+}
+
+.navbar .dropdown-toggle::after {
+  margin-left: 0.4em;
+}
+
+.btn-primary, .btn-outline-primary {
+    background-color: var(--main-green) !important;
+    border-color: var(--main-green) !important;
+    color: #fff !important;
+}
+
+.btn-outline-primary {
+    background: #fff !important;
+    color: var(--main-green) !important;
+}
+
+.btn-primary:hover, .btn-outline-primary:hover {
+    background-color: var(--main-green-dark) !important;
+    border-color: var(--main-green-dark) !important;
+    color: #fff !important;
+}
+
+.text-primary {
+    color: var(--main-green) !important;
+}
+
+.table-primary {
+    background-color: var(--main-green-light) !important;
+    color: var(--main-green-dark) !important;
+}
+
+.footer {
+    background: var(--main-green);
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.card-title.text-primary {
+    color: var(--main-green) !important;
+}
+
+a {
+    color: var(--main-green);
+}
+a:hover {
+    color: var(--main-green-dark);
+}
+
+/* Responsive grid for album and gallery */
+.row.g-3 > [class^='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+.card-img-top, .img-fluid.rounded.shadow-sm {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+@media (max-width: 991.98px) {
+  .row.g-3 > .col-md-3, .row.g-3 > .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .navbar .dropdown-menu {
+    position: static;
+    float: none;
+    box-shadow: none;
+    border-radius: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .row.g-3 > .col-md-3, .row.g-3 > .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .card-img-top, .img-fluid.rounded.shadow-sm {
+    height: 140px;
+  }
+  .navbar-brand span {
+    font-size: 1rem;
+  }
+  .footer {
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
+  main.container.py-4 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Section spacing */
+.mb-4, .mb-5 {
+  margin-bottom: 2rem !important;
+}
+
+/* Card body padding for mobile */
+@media (max-width: 575.98px) {
+  .card-body.p-2 {
+    padding: 0.75rem !important;
+  }
+}
+
+/* Navbar brand logo and text responsive */
+.navbar-brand img {
+  height: 40px;
+  width: auto;
+  max-width: 48px;
+  object-fit: contain;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-brand {
+    font-size: 1rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  .navbar-brand img {
+    height: 32px;
+    max-width: 36px;
+  }
+  .navbar-nav {
+    background: var(--main-green);
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .navbar-nav .nav-link, .navbar-nav .dropdown-item {
+    color: #fff !important;
+  }
+  .navbar-nav .dropdown-menu {
+    background: #fff;
+    color: var(--main-green-dark);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: 1px solid var(--main-green-light);
+  }
+  .navbar-nav .dropdown-item {
+    color: var(--main-green) !important;
+  }
+  .navbar-nav .dropdown-item:hover, .navbar-nav .dropdown-item:focus {
+    background: var(--main-green-light);
+    color: var(--main-green-dark) !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand span {
+    font-size: 0.95rem;
+  }
+  .navbar-nav {
+    font-size: 0.98rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* === Kompakkan tampilan global, kecuali banner, map, dan card === */
+html, body {
+    font-size: 15px;
+}
+
+.navbar, .navbar-nav, .dropdown-menu, .btn, .form-control, .footer {
+    font-size: 0.95em;
+}
+.navbar {
+    min-height: 44px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+.navbar-nav .nav-link, .dropdown-item {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    font-size: 0.97em;
+}
+.btn, .btn-sm, .form-control, .form-control-sm {
+    font-size: 0.95em;
+    padding: 0.3rem 0.7rem;
+}
+.footer {
+    font-size: 0.95em;
+    padding: 12px 0;
+}
+
+.school-logo {
+    width: 60px;
+    height: 60px;
+}
+
+.mb-4, .mb-5 {
+    margin-bottom: 1.2rem !important;
+}
+main.container.py-4 {
+    padding-top: 1.2rem !important;
+    padding-bottom: 1.2rem !important;
+}
+
+/* Banner, map, dan card tetap proporsional (tidak diubah) */
+/* .banner-img, .card, .map-section { ... } */
+
+
+.school-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1s;
+  }
+  .school-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    animation: fadeIn 1.2s;
+  }
+  .school-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    letter-spacing: 1px;
+    animation: slideIn 1.2s;
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+/* Navbar link putih, kecuali dropdown-item tetap hijau */
+.navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.dropdown-menu .dropdown-item {
+    color: var(--main-green) !important;
+    background: #fff;
+}
+
+.dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus {
+    background: var(--main-green-light);
+    color: var(--main-green-dark) !important;
+}

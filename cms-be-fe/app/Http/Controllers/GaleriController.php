@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Album;
+use App\Models\FotoGallery;
+
+class GaleriController extends Controller
+{
+    public function index()
+    {
+        $albums = Album::with('fotoGallery')->get();
+        $galeri = FotoGallery::orderBy('id', 'desc')->get();
+        return view('galeri', compact('albums', 'galeri'));
+    }
+}
