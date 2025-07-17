@@ -18,9 +18,14 @@
     <tr><th>Alamat</th><td>{{ $setting->alamat }}</td></tr>
     <tr><th>Email</th><td>{{ $setting->email }}</td></tr>
     <tr><th>No. Telp</th><td>{{ $setting->no_telp }}</td></tr>
-    <tr><th>Facebook</th><td>{{ $setting->facebook }}</td></tr>
-    <tr><th>Twitter</th><td>{{ $setting->twitter }}</td></tr>
-    <tr><th>Google Plus</th><td>{{ $setting->google_plus }}</td></tr>
+    @php
+        $medsos = json_decode($setting->medsos ?? '{}', true) ?? [];
+    @endphp
+    @if($medsos)
+        @foreach($medsos as $platform => $link)
+            <tr><th>{{ ucfirst($platform) }}</th><td>{{ $link }}</td></tr>
+        @endforeach
+    @endif
     <tr><th>Meta Description</th><td>{{ $setting->meta_desc }}</td></tr>
     <tr><th>Meta Keywords</th><td>{{ $setting->meta_key }}</td></tr>
     <tr><th>Meta Text</th><td>{{ $setting->meta_text }}</td></tr>
