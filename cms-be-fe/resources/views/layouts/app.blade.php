@@ -3,51 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'SMK Kesehatan Darussalam Begras')</title>
+    <title>@yield('title', $webSetting->meta_title ?? $webSetting->nama_sekolah ?? 'SMK Kesehatan Darussalam Begras')</title>
+    <meta name="description" content="@yield('meta_description', $webSetting->meta_desc ?? $webSetting->deskripsi ?? '')">
+    <meta name="keywords" content="@yield('meta_keywords', $webSetting->meta_key ?? '')">
+    <meta name="text" content="@yield('meta_text', $webSetting->meta_text ?? '')">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/' . ($webSetting->logo ?? 'logo.png')) }}"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <style>
-      .school-topbar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        gap: 0.5rem;
-        padding: 1rem 0 0.5rem 0;
-      }
-      .school-logo {
-        width: 70px;
-        height: 70px;
-        object-fit: contain;
-        margin-bottom: 0.5rem;
-      }
-      .school-name {
-        font-size: 1.0rem;
-        font-weight: bold;
-        color: #2c3e50;
-        letter-spacing: 1px;
-        margin-top: 0;
-      }
-      .school-search {
-        min-width: 180px;
-        max-width: 260px;
-      }
-      @media (max-width: 768px) {
-        .school-topbar {
-          flex-direction: column;
-          align-items: stretch;
-          text-align: center;
-        }
-        .school-name {
-          font-size: 1.2rem;
-          margin: 0.5rem 0;
-        }
-        .school-search {
-          max-width: 100%;
-          margin: 0 auto;
-        }
-      }
+
     </style>
 </head>
 <body>
@@ -79,7 +43,12 @@
               <ul class="dropdown-menu" aria-labelledby="menuDropdown{{ $menu->id }}">
                 @foreach($menu->subMenus as $submenu)
                   @if($submenu->page)
-                    <li><a class="dropdown-item" href="{{ route('page.show', strtolower($submenu->page->key_page)) }}">{{ $submenu->nama }}</a></li>
+                    @php
+                      $isSubActive = request()->is('page/' . strtolower($submenu->page->key_page));
+                    @endphp
+                    <li>
+                      <a class="dropdown-item{{ $isSubActive ? ' active' : '' }}" href="{{ route('page.show', strtolower($submenu->page->key_page)) }}">{{ $submenu->nama }}</a>
+                    </li>
                   @else
                     <li><span class="dropdown-item disabled">{{ $submenu->nama }}</span></li>
                   @endif
@@ -87,8 +56,16 @@
               </ul>
             </li>
           @else
+            @php
+              $isActive = false;
+              if ($menu->route) {
+                  $isActive = Route::currentRouteName() === $menu->route;
+              } else {
+                  $isActive = request()->is(strtolower($menu->nama));
+              }
+            @endphp
             <li class="nav-item">
-              <a class="nav-link" href="{{ $menu->route ? route($menu->route) : url('/'.strtolower($menu->nama)) }}">
+              <a class="nav-link{{ $isActive ? ' active' : '' }}" href="{{ $menu->route ? route($menu->route) : url('/'.strtolower($menu->nama)) }}">
                   {{ $menu->nama }}
               </a>
             </li>

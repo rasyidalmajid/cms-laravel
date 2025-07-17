@@ -27,6 +27,9 @@ class AgendaController extends Controller
             'content' => 'required',
         ]);
         $data = $request->only('title', 'tgl', 'content');
+        $data['meta_desc'] = $request->meta_desc;
+        $data['meta_key'] = $request->meta_key;
+        $data['meta_text'] = $request->meta_text;
         $data['datepost'] = now()->toDateString();
         Agenda::insert($data);
         return redirect()->route('admin.agenda.index')->with('success', 'Agenda berhasil ditambahkan!');
@@ -46,6 +49,9 @@ class AgendaController extends Controller
             'content' => 'required',
         ]);
         $data = $request->only('title', 'tgl', 'content');
+        $data['meta_desc'] = $request->meta_desc;
+        $data['meta_key'] = $request->meta_key;
+        $data['meta_text'] = $request->meta_text;
         DB::table('agenda')->where('id', $id)->update($data);
         return redirect()->route('admin.agenda.index')->with('success', 'Agenda berhasil diupdate!');
     }

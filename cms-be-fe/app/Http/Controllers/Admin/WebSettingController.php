@@ -35,6 +35,9 @@ class WebSettingController extends Controller
             'logo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
         $data = $request->only(['judul_website', 'title', 'facebook', 'twitter', 'google_plus', 'email', 'alamat', 'no_telp', 'nama_sekolah']);
+        $data['meta_desc'] = $request->meta_desc;
+        $data['meta_key'] = $request->meta_key;
+        $data['meta_text'] = $request->meta_text;
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $filename = 'logo_' . time() . '.' . $file->getClientOriginalExtension();
