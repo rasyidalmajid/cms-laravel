@@ -45,6 +45,9 @@
                 <a href="{{ route('admin.agenda.index') }}" class="list-group-item list-group-item-action">
                     <i class="bi bi-calendar-event me-2"></i> Kelola Agenda
                 </a>
+                <a href="{{ route('admin.profil_kepala_sekolah.edit') }}" class="list-group-item list-group-item-action">
+                    <i class="bi bi-person-badge me-2"></i> Profil Kepala Sekolah
+                </a>
             </div>
         </nav>
         <main class="col-md-10 ms-sm-auto px-md-4 py-4">

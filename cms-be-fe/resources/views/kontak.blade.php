@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h5 class="fw-bold mb-3">Alamat</h5>
                 <p class="mb-1">{{ $webSetting->alamat ?? 'Jl. Raya Salatiga - Solo Km. 10, Tengaran, Kab. Semarang, Jawa Tengah' }}</p>
-                <p class="mb-1">Telp: {{ $webSetting->telepon ?? '(0298) 321656' }}</p>
+                <p class="mb-1">Telp: {{ $webSetting->no_telp ?? '(0298) 321656' }}</p>
                 <p>Email: {{ $webSetting->email ?? 'smanegeri1tengaran@gmail.com' }}</p>
             </div>
         </div>

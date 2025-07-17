@@ -21,5 +21,8 @@
     <tr><th>Facebook</th><td>{{ $setting->facebook }}</td></tr>
     <tr><th>Twitter</th><td>{{ $setting->twitter }}</td></tr>
     <tr><th>Google Plus</th><td>{{ $setting->google_plus }}</td></tr>
+    <tr><th>Meta Description</th><td>{{ $setting->meta_desc }}</td></tr>
+    <tr><th>Meta Keywords</th><td>{{ $setting->meta_key }}</td></tr>
+    <tr><th>Meta Text</th><td>{{ $setting->meta_text }}</td></tr>
 </table>
 @endsection

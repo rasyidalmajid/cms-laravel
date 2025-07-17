@@ -54,6 +54,21 @@
         <input type="file" name="logo" class="form-control">
         <small class="text-muted">Biarkan kosong jika tidak ingin mengubah logo.</small>
     </div>
+    <div class="mb-3">
+        <label>Meta Description <span class="text-muted">(Opsional)</span></label>
+        <textarea name="meta_desc" class="form-control" rows="2" placeholder="Deskripsi singkat website untuk hasil pencarian Google">{{ old('meta_desc', $setting->meta_desc) }}</textarea>
+        <small class="form-text text-muted">Meta Description membantu Google dan mesin pencari lain memahami ringkasan isi website Anda. Tampilkan kalimat yang menarik dan relevan.</small>
+    </div>
+    <div class="mb-3">
+        <label>Meta Keywords <span class="text-muted">(Opsional)</span></label>
+        <input type="text" name="meta_key" class="form-control" value="{{ old('meta_key', $setting->meta_key) }}" placeholder="kata kunci, dipisah, koma">
+        <small class="form-text text-muted">Meta Keywords adalah kata kunci utama yang relevan dengan website ini, dipisahkan dengan koma. Tidak wajib, tapi bisa membantu SEO.</small>
+    </div>
+    <div class="mb-3">
+        <label>Meta Text <span class="text-muted">(Opsional)</span></label>
+        <textarea name="meta_text" class="form-control" rows="2" placeholder="Teks meta tambahan (jika diperlukan)">{{ old('meta_text', $setting->meta_text) }}</textarea>
+        <small class="form-text text-muted">Meta Text bisa digunakan untuk informasi tambahan terkait SEO atau kebutuhan meta lain.</small>
+    </div>
     @if($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0">

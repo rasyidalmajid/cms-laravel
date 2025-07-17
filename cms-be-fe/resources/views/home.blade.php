@@ -33,7 +33,6 @@
       <h5 class="fw-bold text-primary mb-2">Sambutan Kepala Sekolah</h5>
       <div class="mb-2" style="font-size: 1.05rem;">
         {!! $profilKepalaSekolah->sambutan !!}
-        <span class="fw-bold">{{ $profilKepalaSekolah->nama_kepala_sekolah }}</span>
       </div>
     </div>
   </div>
@@ -56,17 +55,19 @@
 </div>
 
 {{-- GALERI --}}
-<div class="mb-5">
-  <h4 class="mb-3 text-primary">Galeri Foto</h4>
-  <div class="row g-3">
-    @foreach($albums as $foto)
-      <div class="col-6 col-md-3">
-        <img src="{{ asset('assets/album/' . $foto->thumbnail) }}" class="img-fluid rounded shadow-sm" alt="Galeri">
-        <div class="small mt-1">{{ $foto->nama_album }}</div>
-      </div>
-    @endforeach
+<div class="mb-5 bg-gallery-section">
+  <div class="container">
+    <h4 class="mb-3 text-primary">Galeri Foto</h4>
+    <div class="row g-3">
+      @foreach($albums as $foto)
+        <div class="col-6 col-md-3">
+          <img src="{{ asset('assets/album/' . $foto->thumbnail) }}" class="img-fluid rounded shadow-sm" alt="Galeri">
+          <div class="small mt-1">{{ $foto->nama_album }}</div>
+        </div>
+      @endforeach
+    </div>
+    <a href="/galeri" class="btn btn-outline-primary btn-sm mt-3">Lihat Galeri Lengkap</a>
   </div>
-  <a href="/galeri" class="btn btn-outline-primary btn-sm mt-3">Lihat Galeri Lengkap</a>
 </div>
 
 {{-- MAP/ PETA SEKOLAH --}}

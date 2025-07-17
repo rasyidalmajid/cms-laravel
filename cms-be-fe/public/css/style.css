@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 /* Warna utama hijau */
 :root {
     --main-green: #4CAF50;
@@ -6,12 +8,36 @@
 }
 
 body {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
     background: #f8f9fa;
+    color: #2c3e50;
+    transition: background 0.3s;
 }
 
+/* Card dengan animasi masuk */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(44,62,80,0.07);
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeInUp 0.7s;
+}
+.card:hover {
+    box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+    transform: translateY(-3px) scale(1.01);
+}
+
+/* Hilangkan efek hover pada card content di pages */
+.page-content .card:hover {
+  box-shadow: 0 4px 24px rgba(44,62,80,0.07);
+  transform: none;
+}
+
+/* Navbar */
 .navbar, .navbar-light.bg-white {
     background: var(--main-green) !important;
     border-bottom: 2px solid var(--main-green-light);
+    box-shadow: 0 2px 12px rgba(44,62,80,0.06);
+    transition: box-shadow 0.2s;
 }
 
 .navbar-brand {
@@ -60,12 +86,15 @@ body {
   margin-left: 0.4em;
 }
 
+/* Tombol dengan animasi */
 .btn-primary, .btn-outline-primary {
     background-color: var(--main-green) !important;
     border-color: var(--main-green) !important;
     color: #fff !important;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
 }
-
 .btn-outline-primary {
     background: #fff !important;
     color: var(--main-green) !important;
@@ -75,6 +104,8 @@ body {
     background-color: var(--main-green-dark) !important;
     border-color: var(--main-green-dark) !important;
     color: #fff !important;
+    transform: scale(1.04);
+    box-shadow: 0 4px 16px rgba(44,62,80,0.13);
 }
 
 .text-primary {
@@ -86,12 +117,13 @@ body {
     color: var(--main-green-dark) !important;
 }
 
+/* Footer lebih elegan */
 .footer {
-    background: var(--main-green) !important;
+    background: var(--main-green-dark) !important;
     color: #fff;
-    padding: 32px 0 16px 0;
-    border-radius: 0;
-    margin-top: 40px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 -2px 12px rgba(44,62,80,0.07);
+    animation: fadeInUp 1.2s;
 }
 .footer .footer-nav {
     display: flex;
@@ -149,11 +181,21 @@ body {
     color: var(--main-green) !important;
 }
 
+/* Judul dengan animasi */
+h2, .card-title {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    animation: fadeInDown 0.8s;
+}
+
+/* Link animasi */
 a {
     color: var(--main-green);
+    transition: color 0.18s, text-decoration 0.18s;
 }
 a:hover {
     color: var(--main-green-dark);
+    text-decoration: underline;
 }
 
 /* Responsive grid for album and gallery */
@@ -312,40 +354,71 @@ main.container.py-4 {
 /* Banner, map, dan card tetap proporsional (tidak diubah) */
 /* .banner-img, .card, .map-section { ... } */
 
-
-.school-header {
+.school-topbar {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 0.5rem;
-    animation: fadeInDown 1s;
-  }
-  .school-logo {
-    width: 80px;
-    height: 80px;
+    justify-content: center;
+    text-align: center;
+    background-color: #C8E6C9;
+    gap: 0.5rem;
+    padding: 1rem 0 0.5rem 0;
+    box-sizing: border-box;
+    /* Terapkan animasi fadeInDown */
+    animation: fadeInDown 0.8s;
+    animation-fill-mode: both;
+}
+.school-logo {
+    width: 70px;
+    height: 70px;
     object-fit: contain;
     margin-bottom: 0.5rem;
-    animation: fadeIn 1.2s;
-  }
-  .school-name {
-    font-size: 1.5rem;
+    /* Terapkan animasi fadeIn */
+    animation: fadeIn 1s 0.3s both;
+}
+.school-name {
+    font-size: 1.0rem;
     font-weight: bold;
     color: #2c3e50;
     letter-spacing: 1px;
-    animation: slideIn 1.2s;
-  }
-  @keyframes fadeInDown {
+    margin-top: 0;
+    /* Terapkan animasi slideIn */
+    animation: slideIn 0.9s 0.2s both;
+}
+
+@media (max-width: 768px) {
+    .school-topbar {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+    .school-name {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .school-search {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+}
+@keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
+}
+@keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-  }
-  @keyframes slideIn {
+}
+@keyframes slideIn {
     from { opacity: 0; transform: translateX(-40px); }
     to { opacity: 1; transform: translateX(0); }
-  }
+}
 
 /* Navbar link putih, kecuali dropdown-item tetap hijau */
 .navbar-nav .nav-link {
@@ -441,104 +514,288 @@ main.container.py-4 {
     }
 }
 
-.footer-nav-horizontal {
-    gap: 2.2rem !important;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-}
-.footer-menu-horizontal {
-    min-width: 110px;
-}
-.footer-menu-horizontal > .footer-link.fw-bold {
-    font-size: 1.08em;
-    margin-bottom: 0.2rem;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
-}
-.footer-menu-horizontal > .footer-link.fw-bold:hover {
-    color: #C8E6C9;
-}
-.footer-submenu-horizontal {
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    flex-direction: row !important;
-    justify-content: flex-start;
-    align-items: center;
-}
-.footer-submenu-horizontal .footer-link.small {
-    font-size: 0.97em;
-    color: #fff;
-    text-decoration: none;
-    padding: 2px 8px;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.08);
-    transition: background 0.15s, color 0.15s;
-    display: inline-block;
-}
-.footer-submenu-horizontal .footer-link.small:hover {
-    background: #fff;
-    color: var(--main-green);
-}
-@media (max-width: 767.98px) {
-    .footer-nav-horizontal {
-        flex-direction: column;
-        gap: 1.2rem !important;
-        align-items: center;
-    }
-    .footer-menu-horizontal {
-        min-width: 0;
-        text-align: center;
-    }
+/* Animasi Keyframes */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
-.footer-nav-vertical {
+/* Dropdown Navbar Modern & Animasi - Kotak */
+.navbar .dropdown-menu {
+  border-radius: 0;
+  box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+  border: 1px solid var(--main-green-light);
+  padding: 0.7rem 0.2rem;
+  min-width: 210px;
+  background: #fff;
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.98);
+  display: block;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.navbar .dropdown:hover .dropdown-menu,
+.navbar .dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.dropdown-item {
+  padding: 0.55rem 1.5rem;
+  color: var(--main-green);
+  font-weight: 500;
+  border-radius: 0;
+  transition: background 0.18s, color 0.18s, padding-left 0.18s;
+  position: relative;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background: var(--main-green-light);
+  color: var(--main-green-dark);
+  padding-left: 1.8rem;
+}
+
+/* Icon animasi pada dropdown */
+.dropdown-item::before {
+  content: '\25B6'; /* panah kanan */
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%) scale(0.7);
+  opacity: 0;
+  color: var(--main-green-dark);
+  transition: opacity 0.18s, transform 0.18s;
+  font-size: 0.9em;
+}
+.dropdown-item:hover::before, .dropdown-item:focus::before {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Responsive: Dropdown tetap nyaman di mobile */
+@media (max-width: 991.98px) {
+  .navbar .dropdown-menu {
+    position: static;
+    float: none;
+    box-shadow: none;
+    border-radius: 0 !important;
+    margin-top: 0.5rem;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Nav-link aktif dengan background berbeda */
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:active {
+  background: var(--main-green-light) !important;
+  color: var(--main-green-dark) !important;
+  border-radius: 0;
+}
+
+/* Dropdown item aktif */
+.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item:active {
+  background: var(--main-green-light) !important;
+  color: var(--main-green-dark) !important;
+  border-radius: 0;
+}
+
+/* Memastikan tombol close pada modal galeri benar-benar putih */
+#imageModal .btn-close {
+  filter: none !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 16 16'%3e%3cpath d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+  opacity: 1 !important;
+}
+
+/* Tabel admin pages lebih rapi */
+.table-admin-pages {
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(44,62,80,0.07);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.table-admin-pages thead th {
+  background: var(--main-green-light);
+  color: var(--main-green-dark);
+  font-weight: 600;
+  border-bottom: 2px solid var(--main-green);
+  padding: 0.75rem 1rem;
+}
+.table-admin-pages tbody td {
+  padding: 0.7rem 1rem;
+  vertical-align: middle;
+  border-top: 1px solid #e0e0e0;
+}
+.table-admin-pages tbody tr:hover {
+  background: #f3f7f3;
+  transition: background 0.18s;
+}
+.table-admin-pages th, .table-admin-pages td {
+  border-left: none;
+  border-right: none;
+}
+.table-admin-pages tr:last-child td {
+  border-bottom: none;
+}
+.table-admin-pages .btn {
+  font-size: 0.95em;
+  padding: 0.25rem 0.7rem;
+}
+
+/* Responsive khusus untuk sidebar dan navbar admin */
+@media (max-width: 991.98px) {
+  .sidebar, .sidebar-admin {
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    padding: 0.5rem 0.5rem !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 1rem;
+  }
+  .sidebar .list-group, .sidebar-admin .list-group {
+    flex-direction: row !important;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-}
-.footer-nav-vertical .footer-link.fw-bold {
-    font-size: 1.08em;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
-    padding: 2px 0;
-    transition: color 0.15s;
-}
-.footer-nav-vertical .footer-link.fw-bold:hover {
-    color: #C8E6C9;
-}
-.footer-submenu-vertical {
-    gap: 0.2rem;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    margin-top: 0.3rem;
-}
-.footer-submenu-vertical .footer-link.small {
+    justify-content: flex-start;
+  }
+  .sidebar .list-group-item, .sidebar-admin .list-group-item {
+    width: auto !important;
+    min-width: 120px;
+    text-align: center;
+    margin-bottom: 0 !important;
+    border-radius: 6px !important;
     font-size: 0.97em;
-    color: #fff;
-    text-decoration: none;
-    padding: 2px 8px;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.08);
-    transition: background 0.15s, color 0.15s;
-    display: block;
+    padding: 0.5em 0.7em !important;
+  }
 }
-.footer-submenu-vertical .footer-link.small:hover {
-    background: #fff;
-    color: var(--main-green);
+@media (max-width: 575.98px) {
+  .sidebar, .sidebar-admin {
+    padding: 0.2rem 0.2rem !important;
+  }
+  .sidebar .list-group-item, .sidebar-admin .list-group-item {
+    font-size: 0.95em;
+    min-width: 90px;
+    padding: 0.4em 0.3em !important;
+  }
+}
+/* Responsive untuk navbar admin */
+@media (max-width: 991.98px) {
+  .navbar-admin .navbar-brand {
+    font-size: 1rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+  .navbar-admin .navbar-nav {
+    background: var(--main-green);
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .navbar-admin .nav-link, .navbar-admin .dropdown-item {
+    color: #fff !important;
+  }
+}
+
+/* Section galeri home full width dan kontras */
+.bg-gallery-section {
+  background: var(--main-green-light);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+  padding: 2.2rem 0;
+  margin-bottom: 2.5rem;
+  transition: background 0.3s;
+}
+.bg-gallery-section h4,
+.bg-gallery-section .small,
+.bg-gallery-section .btn,
+.bg-gallery-section a,
+.bg-gallery-section .btn-outline-primary {
+  color: #000000 !important;
+}
+.bg-gallery-section .btn-outline-primary {
+  border-color: #000000 !important;
+  background: transparent !important;
+}
+.bg-gallery-section .btn-outline-primary:hover {
+  background: #000000 !important;
+  color: var(--main-green-light) !important;
+  border-color: #000000 !important;
 }
 @media (max-width: 767.98px) {
-    .footer-submenu-vertical {
-        align-items: center !important;
-    }
-    .footer-nav-vertical {
-        align-items: center !important;
-    }
-    .footer-submenu-horizontal {
-        justify-content: center !important;
-    }
+  .bg-gallery-section {
+    padding: 1.2rem 0;
+    border-radius: 10px;
+  }
+}
+
+.page-content-card {
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background: #f9fafb;
+  box-shadow: 0 2px 10px rgba(44,62,80,0.04);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  transition: none;
+}
+.page-content-card:hover {
+  box-shadow: 0 2px 10px rgba(44,62,80,0.04);
+  transform: none;
+}
+@media (max-width: 575.98px) {
+  .page-content-card {
+    padding: 1.2rem 0.7rem;
+  }
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+
+img, iframe, video {
+  max-width: 100%;
+}
+
+/* Responsive padding for container and page content card */
+@media (max-width: 575.98px) {
+  .container, .page-content-card {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Footer always at bottom */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
+
+/* Focus state for accessibility */
+a:focus, button:focus, .btn:focus {
+  outline: 2px solid var(--main-green-dark);
+  outline-offset: 2px;
 }
