@@ -16,6 +16,9 @@
             <th>#</th>
             <th>Judul</th>
             <th>Tanggal</th>
+            <th>Meta Description</th>
+            <th>Meta Keywords</th>
+            <th>Meta Text</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -25,6 +28,9 @@
                 <td>{{ ($agendas->currentPage() - 1) * $agendas->perPage() + $loop->iteration }}</td>
                 <td>{{ $agenda->title }}</td>
                 <td>{{ $agenda->tgl }}</td>
+                <td>{{ Str::limit($agenda->meta_desc, 60) }}</td>
+                <td>{{ Str::limit($agenda->meta_key, 40) }}</td>
+                <td>{{ Str::limit($agenda->meta_text, 40) }}</td>
                 <td>
                     <a href="{{ route('admin.agenda.edit', $agenda->id) }}" class="btn btn-sm btn-primary">Edit</a>
                     <form action="{{ route('admin.agenda.destroy', $agenda->id) }}" method="POST" style="display:inline-block" onsubmit="return confirm('Yakin hapus agenda?')">

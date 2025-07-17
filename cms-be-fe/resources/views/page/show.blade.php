@@ -2,6 +2,10 @@
 
 @section('title', ($page->title ?? 'Halaman') . ' | ' . ($webSetting->nama_sekolah ?? 'Sekolah') )
 
+@section('meta_description', $page->meta_desc ?? $webSetting->meta_desc ?? '')
+@section('meta_keywords', $page->meta_key ?? $webSetting->meta_key ?? '')
+@section('meta_text', $page->meta_text ?? $webSetting->meta_text ?? '')
+
 @section('content')
 <div class="row">
   <div class="col-lg-3 mb-4">
@@ -23,7 +27,7 @@
     </nav>
   </div>
   <div class="col-lg-9">
-    <div class="card shadow-sm mb-4">
+    <div class="page-content-card shadow-sm mb-4">
       <div class="card-body">
         <h2 class="mb-3 text-primary">{{ $page->title }}</h2>
         {!! $page->content !!}
@@ -33,7 +37,7 @@
           <div class="d-flex align-items-center gap-2">
             <span>{{ optional(\App\Models\Berkas::find($page->berkas_id))->nama_berkas }}</span>
             @if(\App\Models\Berkas::find($page->berkas_id))
-              <a href="{{ asset('assets/berkas/' . \App\Models\Berkas::find($page->berkas_id)->berkas) }}" class="btn btn-sm btn-primary" download>Download</a>
+              <a href="{{ asset('assets/berkas/' . \App\Models\Berkas::find($page->berkas_id)->berkas) }}" class="btn btn-sm btn-primary" download>Download ⬇️</a>
             @endif
           </div>
         </div>

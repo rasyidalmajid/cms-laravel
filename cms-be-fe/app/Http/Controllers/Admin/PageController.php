@@ -14,7 +14,13 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::with(['subMenu.menu'])->get();
-        return view('admin.pages.index', compact('pages'));
+        // Kelompokkan berdasarkan menu induk
+        $groupedPages = $pages->groupBy(function($page) {
+            return $page->subMenu && $page->subMenu->menu ? $page->subMenu->menu->nama : 'Tanpa Menu Induk';
+        });
+        return view('admin.pages.index', [
+            'groupedPages' => $groupedPages
+        ]);
     }
 
     public function create()
@@ -43,6 +49,9 @@ class PageController extends Controller
             'title' => $request->title,
             'key_page' => $slug,
             'content' => $request->content,
+            'meta_desc' => $request->meta_desc,
+            'meta_key' => $request->meta_key,
+            'meta_text' => $request->meta_text,
         ]);
         // Simpan ke sub_menu
         SubMenu::create([
@@ -118,6 +127,9 @@ class PageController extends Controller
             'title' => $request->title,
             'key_page' => $slug,
             'content' => $request->content,
+            'meta_desc' => $request->meta_desc,
+            'meta_key' => $request->meta_key,
+            'meta_text' => $request->meta_text,
         ]);
         // Update/insert sub_menu
         $subMenu = SubMenu::where('page_id', $id)->first();
