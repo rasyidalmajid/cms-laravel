@@ -20,7 +20,7 @@ class ProfilKepalaSekolahController extends Controller
             'nama_kepala_sekolah' => 'required',
             'alamat' => 'required',
             'sambutan' => 'required',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:248',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
         $data = $request->only(['nama_kepala_sekolah', 'alamat', 'sambutan']);
         if ($request->hasFile('foto')) {

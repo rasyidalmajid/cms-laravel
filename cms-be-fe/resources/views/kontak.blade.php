@@ -21,14 +21,16 @@
             <div class="card-body">
                 <h5 class="fw-bold mb-3">Media Sosial</h5>
                 <ul class="list-unstyled mb-0">
-                  @if(!empty($webSetting->facebook))
-                    <li class="mb-2"><i class="bi bi-facebook me-2"></i> <a href="{{ $webSetting->facebook }}" target="_blank">Facebook</a></li>
-                  @endif
-                  @if(!empty($webSetting->twitter))
-                    <li class="mb-2"><i class="bi bi-twitter me-2"></i> <a href="{{ $webSetting->twitter }}" target="_blank">Twitter</a></li>
-                  @endif
-                  @if(!empty($webSetting->google_plus))
-                    <li class="mb-2"><i class="bi bi-google me-2"></i> <a href="{{ $webSetting->google_plus }}" target="_blank">Google+</a></li>
+                  @php
+                      $medsos = json_decode($webSetting->medsos ?? '{}', true) ?? [];
+                  @endphp
+                  @if($medsos)
+                      @foreach($medsos as $platform => $link)
+                          <li class="mb-2">
+                              <i class="bi bi-{{ strtolower($platform) }} me-2"></i>
+                              <a href="{{ $link }}" target="_blank">{{ ucfirst($platform) }}</a>
+                          </li>
+                      @endforeach
                   @endif
                 </ul>
             </div>
@@ -40,11 +42,19 @@
         <div class="card shadow-sm h-100">
             <div class="card-body">
                 <h5 class="fw-bold mb-3">Jam Kerja</h5>
-                <ul class="list-unstyled mb-0">
-                  <li>Senin - Kamis: 07.00 - 15.00</li>
-                  <li>Jumat: 07.00 - 11.00</li>
-                  <li>Sabtu & Minggu: Libur</li>
-                </ul>
+                @php
+                    $jamKerja = \App\Models\JamKerja::all();
+                @endphp
+                @if($jamKerja->count())
+                    <ul class="list-unstyled mb-0">
+                        @foreach($jamKerja as $row)
+                            <li>
+                                <strong>{{ $row->hari }}:</strong>
+                                {{ $row->keterangan ? $row->keterangan : $row->jam_mulai . ' - ' . $row->jam_selesai }}
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
         </div>
     </div>

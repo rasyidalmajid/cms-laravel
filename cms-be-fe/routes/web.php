@@ -32,6 +32,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::resource('menu', App\Http\Controllers\Admin\MenuController::class)->names('admin.menu');
     Route::resource('gallery', App\Http\Controllers\Admin\GalleryController::class)->names('admin.gallery');
     Route::resource('agenda', App\Http\Controllers\Admin\AgendaController::class)->names('admin.agenda');
+    Route::resource('jam_kerja', \App\Http\Controllers\Admin\JamKerjaController::class)->names('admin.jam_kerja');
     Route::get('web-setting', [App\Http\Controllers\Admin\WebSettingController::class, 'index'])->name('admin.web_setting.index');
     Route::get('web-setting/edit', [App\Http\Controllers\Admin\WebSettingController::class, 'edit'])->name('admin.web_setting.edit');
     Route::put('web-setting', [App\Http\Controllers\Admin\WebSettingController::class, 'update'])->name('admin.web_setting.update');
