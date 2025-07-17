@@ -29,18 +29,8 @@
         <label>No. Telp</label>
         <input type="text" name="no_telp" class="form-control" required value="{{ old('no_telp', $setting->no_telp) }}">
     </div>
-    <div class="mb-3">
-        <label>Facebook</label>
-        <input type="text" name="facebook" class="form-control" value="{{ old('facebook', $setting->facebook) }}">
-    </div>
-    <div class="mb-3">
-        <label>Twitter</label>
-        <input type="text" name="twitter" class="form-control" value="{{ old('twitter', $setting->twitter) }}">
-    </div>
-    <div class="mb-3">
-        <label>Google Plus</label>
-        <input type="text" name="google_plus" class="form-control" value="{{ old('google_plus', $setting->google_plus) }}">
-    </div>
+    {{-- Hapus input Facebook, Twitter, Google Plus, Youtube, Instagram --}}
+    {{-- Form dinamis medsos sudah ada di bawah --}}
 
     <div class="mb-3">
         <label>Nama Sekolah</label>
@@ -53,6 +43,22 @@
         @endif
         <input type="file" name="logo" class="form-control">
         <small class="text-muted">Biarkan kosong jika tidak ingin mengubah logo.</small>
+    </div>
+    <div class="mb-3">
+        <label>Media Sosial</label>
+        <div id="medsos-list">
+            @php
+                $medsos = json_decode($setting->medsos ?? '{}', true) ?? [];
+            @endphp
+            @foreach($medsos as $platform => $link)
+                <div class="input-group mb-2">
+                    <input type="text" name="medsos_platform[]" class="form-control" value="{{ $platform }}" placeholder="Nama Platform (misal: TikTok)">
+                    <input type="text" name="medsos_link[]" class="form-control" value="{{ $link }}" placeholder="Link">
+                    <button type="button" class="btn btn-danger btn-remove-medsos">Hapus</button>
+                </div>
+            @endforeach
+        </div>
+        <button type="button" class="btn btn-primary" id="add-medsos">Tambah Platform Medsos</button>
     </div>
     <div class="mb-3">
         <label>Meta Description <span class="text-muted">(Opsional)</span></label>
@@ -69,6 +75,23 @@
         <textarea name="meta_text" class="form-control" rows="2" placeholder="Teks meta tambahan (jika diperlukan)">{{ old('meta_text', $setting->meta_text) }}</textarea>
         <small class="form-text text-muted">Meta Text bisa digunakan untuk informasi tambahan terkait SEO atau kebutuhan meta lain.</small>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('add-medsos').onclick = function() {
+            let html = `<div class="input-group mb-2">
+                <input type="text" name="medsos_platform[]" class="form-control" placeholder="Nama Platform (misal: TikTok)">
+                <input type="text" name="medsos_link[]" class="form-control" placeholder="Link">
+                <button type="button" class="btn btn-danger btn-remove-medsos">Hapus</button>
+            </div>`;
+            document.getElementById('medsos-list').insertAdjacentHTML('beforeend', html);
+        };
+        document.getElementById('medsos-list').addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-remove-medsos')) {
+                e.target.closest('.input-group').remove();
+            }
+        });
+    });
+    </script>
     @if($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0">

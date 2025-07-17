@@ -15,7 +15,12 @@
                     <div class="card-body" style="cursor:pointer;">
                         <div class="fw-bold mb-1" style="font-size:1.1rem;">{{ $agenda->title }}</div>
                         <div class="small text-muted mb-2">{{ $agenda->tgl ? date('d M Y', strtotime($agenda->tgl)) : '' }}</div>
-                        <div class="mb-2">{!! Str::limit(strip_tags($agenda->content), 120) !!}</div>
+                        <button type="button" class="btn btn-outline-primary btn-sm btn-detail-agenda"
+                            data-title="{{ $agenda->title }}"
+                            data-tgl="{{ $agenda->tgl ? date('d M Y', strtotime($agenda->tgl)) : '' }}"
+                            data-content="{!! e($agenda->content) !!}">
+                            Selengkapnya
+                        </button>
                     </div>
                 </div>
             </div>
@@ -38,7 +43,7 @@
       <div class="modal-body">
         <h5 id="modalAgendaTitle"></h5>
         <div class="text-muted mb-2" id="modalAgendaTgl"></div>
-        <div id="modalAgendaContent"></div>
+        <div id="modalAgendaContent" style="max-height:350px; overflow:auto;"></div>
       </div>
     </div>
   </div>
@@ -46,11 +51,16 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.agenda-card').forEach(function(card) {
-    card.addEventListener('click', function() {
+  document.querySelectorAll('.btn-detail-agenda').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
       document.getElementById('modalAgendaTitle').textContent = this.dataset.title;
       document.getElementById('modalAgendaTgl').textContent = this.dataset.tgl;
-      document.getElementById('modalAgendaContent').textContent = this.dataset.content;
+      // Render konten asli agenda (dengan enter dan <br>)
+      let content = this.dataset.content
+        .replace(/\r?\n/g, '<br>')
+        .replace(/  /g, '&nbsp;&nbsp;');
+      document.getElementById('modalAgendaContent').innerHTML = content;
       var modal = new bootstrap.Modal(document.getElementById('agendaModal'));
       modal.show();
     });
