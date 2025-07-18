@@ -27,7 +27,7 @@
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content border-0 position-relative" style="background:rgba(20,20,20,0.92); box-shadow:none;">
-      <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="filter: drop-shadow(0 0 4px #000);"></button>
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="filter: drop-shadow(0 0 4px #000);"></button>
       <img src="" id="modalImage" class="img-fluid rounded shadow" style="max-height:80vh;object-fit:contain; display:block; margin:auto;" alt="Preview">
     </div>
   </div>

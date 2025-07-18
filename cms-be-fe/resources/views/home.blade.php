@@ -24,7 +24,7 @@
 {{-- KEPALA SEKOLAH, SAMBUTAN, AGENDA --}}
 <div class="row align-items-stretch mb-5 g-3">
   <div class="col-md-3 text-center d-flex flex-column justify-content-center">
-    <img src="{{ asset('assets/images/' . $profilKepalaSekolah->foto) }}" alt="Kepala Sekolah" class="img-fluid rounded-circle shadow mb-2" style="max-width: 150px;">
+    <img src="{{ asset('assets/images/' . $profilKepalaSekolah->foto) }}" alt="Kepala Sekolah" class="foto-kepsek-home mb-2" style="max-width: 150px;">
     <div class="fw-bold mt-2">{{ $profilKepalaSekolah->nama_kepala_sekolah }}</div>
     <div class="small text-muted">Kepala Sekolah</div>
   </div>
@@ -71,10 +71,10 @@
 </div>
 
 {{-- MAP/ PETA SEKOLAH --}}
-<div class="mb-5">
-  <h4 class="mb-3 text-primary">Lokasi Sekolah</h4>
-  <div style="width: 100%; height: 400px;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.59854453919!2d110.39711117400044!3d-7.17206319283276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70865dafb8111f%3A0x1f0f4bbae809aceb!2sSMK%20Kesehatan%20Darussalam%20Bergas!5e1!3m2!1sid!2sid!4v1752639226105!5m2!1sid!2sid" style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="mb-5 map-section">
+    <h4 class="mb-3 text-primary">Lokasi Sekolah</h4>
+    <div style="width: 100%; height: 400px;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.59854453919!2d110.39711117400044!3d-7.17206319283276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70865dafb8111f%3A0x1f0f4bbae809aceb!2sSMK%20Kesehatan%20Darussalam%20Bergas!5e1!3m2!1sid!2sid!4v1752639226105!5m2!1sid!2sid" style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
-</div>
 @endsection

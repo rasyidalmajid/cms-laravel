@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Admin - @yield('title', 'Dashboard')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Tambahkan Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -51,6 +51,9 @@
                 <a href="{{ route('admin.profil_kepala_sekolah.edit') }}" class="list-group-item list-group-item-action">
                     <i class="bi bi-person-badge me-2"></i> Profil Kepala Sekolah
                 </a>
+                <a href="{{ route('admin.user.index') }}" class="list-group-item list-group-item-action">
+                    <i class="bi bi-person-lines-fill me-2"></i> Kelola Admin
+                </a>
 
             </div>
         </nav>
@@ -60,6 +63,7 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 @stack('scripts')
 </body>
 </html>
