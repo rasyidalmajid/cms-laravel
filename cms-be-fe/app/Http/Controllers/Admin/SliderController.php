@@ -78,4 +78,13 @@ class SliderController extends Controller
         $slider->delete();
         return redirect()->route('admin.slider.index')->with('success', 'Slider berhasil dihapus!');
     }
+
+    public function reorder(Request $request)
+    {
+        $order = $request->input('order', []);
+        foreach ($order as $i => $id) {
+            \App\Models\Slider::where('id', $id)->update(['no_urut' => $i]);
+        }
+        return response()->json(['success' => true]);
+    }
 }

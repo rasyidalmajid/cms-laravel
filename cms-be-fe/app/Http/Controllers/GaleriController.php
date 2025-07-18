@@ -10,7 +10,7 @@ class GaleriController extends Controller
 {
     public function index()
     {
-        $albums = Album::with('fotoGallery')->get();
+        $albums = Album::get();
         return view('galeri', compact('albums'));
     }
 }

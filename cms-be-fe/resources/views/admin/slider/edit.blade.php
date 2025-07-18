@@ -18,10 +18,6 @@
         <small class="text-muted">Biarkan kosong jika tidak ingin mengubah gambar.</small>
     </div>
     <div class="mb-3">
-        <label>Urutan</label>
-        <input type="number" name="no_urut" class="form-control" required value="{{ old('no_urut', $slider->no_urut) }}">
-    </div>
-    <div class="mb-3">
         <label>Link (opsional)</label>
         <input type="url" name="link" class="form-control" value="{{ old('link', $slider->link) }}">
     </div>
