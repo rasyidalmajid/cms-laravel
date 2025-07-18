@@ -21,6 +21,10 @@ Route::get('/page/{slug}', [\App\Http\Controllers\PageController::class, 'show']
 Route::get('/agenda', [\App\Http\Controllers\AgendaController::class, 'index'])->name('agenda.index');
 Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'xml']);
 
+Route::get('/login', function() {
+    return redirect('/admin/login');
+})->name('login');
+
 Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AuthController::class, 'login'])->name('admin.login.submit');
 Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
@@ -33,10 +37,12 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::resource('gallery', App\Http\Controllers\Admin\GalleryController::class)->names('admin.gallery');
     Route::resource('agenda', App\Http\Controllers\Admin\AgendaController::class)->names('admin.agenda');
     Route::resource('jam_kerja', \App\Http\Controllers\Admin\JamKerjaController::class)->names('admin.jam_kerja');
+    Route::resource('user', App\Http\Controllers\Admin\UserController::class)->names('admin.user');
     Route::get('web-setting', [App\Http\Controllers\Admin\WebSettingController::class, 'index'])->name('admin.web_setting.index');
     Route::get('web-setting/edit', [App\Http\Controllers\Admin\WebSettingController::class, 'edit'])->name('admin.web_setting.edit');
     Route::put('web-setting', [App\Http\Controllers\Admin\WebSettingController::class, 'update'])->name('admin.web_setting.update');
     Route::post('menu/reorder', [App\Http\Controllers\Admin\MenuController::class, 'reorder'])->name('admin.menu.reorder');
+    Route::post('slider/reorder', [App\Http\Controllers\Admin\SliderController::class, 'reorder'])->name('admin.slider.reorder');
     Route::get('profil-kepala-sekolah/edit', [\App\Http\Controllers\Admin\ProfilKepalaSekolahController::class, 'edit'])->name('admin.profil_kepala_sekolah.edit');
     Route::put('profil-kepala-sekolah/update', [\App\Http\Controllers\Admin\ProfilKepalaSekolahController::class, 'update'])->name('admin.profil_kepala_sekolah.update');
 });

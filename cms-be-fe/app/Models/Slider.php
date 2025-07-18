@@ -12,4 +12,5 @@ class Slider extends Model
     protected $fillable = [
         'picture', 'title', 'desc', 'no_urut', 'link'
     ];
+public $timestamps = false;
 }

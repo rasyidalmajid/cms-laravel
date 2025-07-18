@@ -8,7 +8,7 @@
     <meta name="keywords" content="@yield('meta_keywords', $webSetting->meta_key ?? '')">
     <meta name="text" content="@yield('meta_text', $webSetting->meta_text ?? '')">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/' . ($webSetting->logo ?? 'logo.png')) }}"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <style>
 
@@ -75,19 +75,17 @@
     </div>
   </div>
 </nav>
-<main class="container py-4">
+<main class="main-content py-4">
     @yield('content')
 </main>
 <footer class="footer-main">
-    <div class="container py-4 text-center">
-        <img src="{{ asset('assets/images/' . ($webSetting->logo ?? 'logo.png')) }}" alt="Logo" class="footer-logo mb-2">
-        <div class="fw-bold mb-2" style="font-size:1.1rem;">{{ $webSetting->nama_sekolah ?? 'Nama Sekolah' }}</div>
-        <hr class="footer-hr my-3">
-        <div class="text-center small footer-copyright">
-            &copy; {{ date('Y') }} {{ $webSetting->nama_sekolah ?? 'Nama Sekolah' }}. Supported By Aston Sistem.
-        </div>
+    <img src="{{ asset('assets/images/' . ($webSetting->logo ?? 'logo.png')) }}" alt="Logo" class="footer-logo mb-2">
+    <div class="fw-bold mb-2" style="font-size:1.1rem;">{{ $webSetting->nama_sekolah ?? 'Nama Sekolah' }}</div>
+    <hr class="footer-hr my-3">
+    <div class="text-center small footer-copyright">
+        &copy; {{ date('Y') }} {{ $webSetting->nama_sekolah ?? 'Nama Sekolah' }}. Supported By Aston Sistem.
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
